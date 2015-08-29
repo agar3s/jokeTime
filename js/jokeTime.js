@@ -17,11 +17,13 @@ var scoreText;
 
 jokeTime.game = new Phaser.Game(380, 640, Phaser.AUTO, 'game');
 
+jokeTime.game.state.add('Boot', jokeTime.Boot);
+jokeTime.game.state.add('Preload', jokeTime.Preload);
 jokeTime.game.state.add('Preload', jokeTime.Preload);
 jokeTime.game.state.add('MainMenu', jokeTime.MainMenu);
 jokeTime.game.state.add('Game', jokeTime.Game);
 
-jokeTime.game.state.start('Preload');
+jokeTime.game.state.start('Boot');
 
 
 jokeTime.gofull = function() {
