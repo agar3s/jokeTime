@@ -4,6 +4,24 @@ jokeTime.Preload = function() {};
 
 jokeTime.Preload.prototype = {
   preload: function() {
+      var loaderBarHeight = 128;
+
+  //Add the background and progess bar for showing while all assets are loaded
+  this.preloadBar = this.game.add.sprite(0, this.game.world.height / 2 - loaderBarHeight / 2, 'loading_progress');
+  this.preloadBar.width = this.game.world.width;
+  this.preloadBar.height = loaderBarHeight;
+  this.load.setPreloadSprite(this.preloadBar);
+
+  //Create the text of Loading...
+  this.loadingText = this.game.add.text(0, this.preloadBar.y - 20, 
+    "loading", 
+    {fill: 'white', font:'18pt Unibody8Pro-Regular'});
+
+  this.loadingText.anchor.set(0.5, 0.5);
+  this.loadingText.x = ((this.game.world.width / 2) - (this.loadingText.width / 2)) + 10;
+    
+
+
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 

@@ -27,9 +27,13 @@ jokeTime.Game.prototype = {
     graphics.drawRect(0, 580, 380, 60);
 
     fila1 = jokeTime.game.add.sprite(0, 380, 'fila1');
+    fila1.scale.set(0.8);
     fila2 = jokeTime.game.add.sprite(0, 380, 'fila2');
+    fila2.scale.set(0.8);
     fila3 = jokeTime.game.add.sprite(0, 420, 'fila3');
+    fila3.scale.set(0.8);
     fila4 = jokeTime.game.add.sprite(0, 460, 'fila4');
+    fila4.scale.set(0.8);
 
 
     // Aplause!
