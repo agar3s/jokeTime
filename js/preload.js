@@ -7,10 +7,9 @@ jokeTime.Preload.prototype = {
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     jokeTime.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-    this.load.image('sky', 'assets/sky.png');
-    this.load.image('ground', 'assets/platform.png');
-    this.load.image('star', 'assets/star.png');
-    this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    this.load.image('background', 'assets/vista.jpg');
+    this.load.spritesheet('marci', 'assets/marci.png', 50, 121);
+    this.load.image('tomato', 'assets/tomato.png');
   },
   create: function() {
     this.state.start('MainMenu');
