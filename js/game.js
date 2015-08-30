@@ -154,10 +154,10 @@ function boo(){
   for (var i = 0; i < 20; i++) {
     launchTomato();
   };
-  boolameVoice.onStop.add(function(){
+  setTimeout(function(){
     state = STATE.BOOING;
     nextJoke();
-  }, jokeTime.game);
+  }, 2000);
 };
 
 function clap(){
@@ -235,7 +235,7 @@ function nextJoke(){
   }else{
     changeCharacters(character, function(){
       //jakeLol.play();
-      if(character=='lsp'){
+      if(joker=='lsp'&&!lspVoice.isPlaying){
         lspVoice.play();
       }
     });
