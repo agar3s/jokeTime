@@ -5,6 +5,9 @@ jokeTime.MainMenu = function() {};
 var bmpText;
 jokeTime.MainMenu.prototype = {
   create: function() {
+    ost = jokeTime.game.add.audio('ost');
+    ost.loop= true;
+    ost.play();
     jokeTime.game.add.sprite(0, 0, 'splash');
     jokeTime.game.input.onDown.add(this.start, this);
 

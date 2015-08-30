@@ -17,13 +17,37 @@ var jokes = {
   '11': {joker:'jake', joke:'¿Por qué se suicido el libro\nde matemáticas?\n- Porque tenía muchos problemas.\n- jejeje'},
   '12': {joker:'lsp', joke:'Estos grumos...\nQue quieres besar y abrazar...\nEstos grumos...\nNo puedes porque eres burro...'},
   
-}; 
+};
 
-jokeTime.getJoke = function(){
-  var index = Math.floor(Math.random()*ajokes.length);
-  var val = ajokes.splice(index, 1);
+function getJokesFor(character){
+  if(!character) return [];
+  var availableJokes = [];
+  for (var i = 0; i < ajokes.length; i++) {
+    var joke = jokes[ajokes[i]];
+    if(joke.joker==character){
+      availableJokes.push(ajokes[i]);
+    }
+  };
+  console.log('av');
+  console.log(availableJokes);
+  return availableJokes;
+}
+
+jokeTime.getJoke = function(character){
+  console.log('joker is:', character);
+  var availableJokes = getJokesFor(character);
+  if(availableJokes.length==0){
+    availableJokes = ajokes;
+  }
+  console.log('ed');
+  console.log(availableJokes);
+
+  var index = Math.floor(Math.random()*availableJokes.length);
+  var value = availableJokes[index];
+
+  ajokes.splice(ajokes.indexOf(value), 1);
   if(ajokes.length==0){
     ajokes = Object.keys(jokes);
   }
-  return jokes[val];
+  return jokes[value];
 }
