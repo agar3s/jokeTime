@@ -41,6 +41,7 @@ jokeTime.Preload.prototype = {
 
     this.load.audio('jake-voice', 'assets/Jake-voice.mp3');
     this.load.audio('lsp-voice', 'assets/LSP-voice.mp3');
+    this.load.audio('lsp-lol', 'assets/LSP-haha.mp3');
     this.load.audio('marcy-voice', 'assets/Marcy-haha.mp3');
     this.load.audio('boolame-voice', 'assets/boo.mp3');
     this.load.audio('bravo-voice', 'assets/Bravo.mp3');

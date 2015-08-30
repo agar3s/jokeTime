@@ -73,8 +73,8 @@ jokeTime.Game.prototype = {
     marci.animations.add('walk', [0,1,2,1]);
     marci.animations.add('idle', [3]);
     // ***
-    marci.animations.add('walkt', [0,1,2,1]);
-    marci.animations.add('idlet', [3]);
+    marci.animations.add('walkt', [4,5,6,5]);
+    marci.animations.add('idlet', [7]);
     marci.visible = false;
     marcyLol = jokeTime.game.add.audio('marcy-voice');
 
@@ -91,8 +91,8 @@ jokeTime.Game.prototype = {
     jake.animations.add('walk', [0,1,2,1]);
     jake.animations.add('idle', [3]);
     // ***
-    jake.animations.add('walkt', [0,1,2,1]);
-    jake.animations.add('idlet', [3]);
+    jake.animations.add('walkt', [4,5,6,5]);
+    jake.animations.add('idlet', [7]);
     jake.visible = false;
     jakeLol = jokeTime.game.add.audio('jake-voice');
     
@@ -101,9 +101,10 @@ jokeTime.Game.prototype = {
     lsp.animations.add('walk', [0,1,2,1]);
     lsp.animations.add('idle', [3]);
     // ***
-    lsp.animations.add('walkt', [0,1,2,1]);
-    lsp.animations.add('idlet', [3]);
+    lsp.animations.add('walkt', [4,5,6,5]);
+    lsp.animations.add('idlet', [7]);
     lsp.visible = false;
+    lspLol = jokeTime.game.add.audio('lsp-lol');
     lspVoice = jokeTime.game.add.audio('lsp-voice');
     lspVoice.loop = true;
 
@@ -221,6 +222,7 @@ function updateJoke(){
       marcyLol.play();
     }else if(joker=='lsp'){
       lspVoice.stop();
+      lspLol.play();
     }
     state = STATE.END;
     enableButtons();
