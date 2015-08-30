@@ -31,6 +31,8 @@ jokeTime.Preload.prototype = {
     this.load.spritesheet('finn', 'assets/finn-sprite.png', 58, 81);
     this.load.spritesheet('jake', 'assets/Jake-Sprite.png', 50, 64);
     this.load.spritesheet('lsp', 'assets/LSP-Sprint.png', 66, 92);
+    this.load.spritesheet('bp', 'assets/BP-Sprite.png', 50, 122);
+    this.load.spritesheet('iceKing', 'assets/IceKing-Sprite.png', 106, 105);
     this.load.spritesheet('boo', 'assets/boo-button.png', 120, 108);
     this.load.spritesheet('cinnamon', 'assets/Applause-button.png', 120, 108);
     this.load.spritesheet('play', 'assets/jugar-boton.png', 334, 114);
@@ -57,7 +59,7 @@ jokeTime.Preload.prototype = {
     this.load.bitmapFont('vcr', 'fonts/vcr_0.png', 'fonts/vcr.xml');
   },
   create: function() {
-    this.state.start('MainMenu');
-    //this.state.start('Game');
+    //this.state.start('MainMenu');
+    this.state.start('Game');
   }
 };

@@ -68,36 +68,49 @@ jokeTime.Game.prototype = {
     tween4.pause();
 
 
-    //
+    // Marceline
     marci = jokeTime.game.add.sprite(66, 220, 'marci');
     marci.animations.add('walk', [0,1,2,1]);
     marci.animations.add('idle', [3]);
     marci.visible = false;
+    marcyLol = jokeTime.game.add.audio('marcy-voice');
 
+    // Finn the human
     finn = jokeTime.game.add.sprite(166, 252, 'finn');
     finn.animations.add('walk', [0,1,2,1]);
     finn.animations.add('idle', [3]);
     finn.visible = false;
 
+    // Jake the dog
     jake = jokeTime.game.add.sprite(266, 269, 'jake');
     jake.animations.add('walk', [0,1,2,1]);
     jake.animations.add('idle', [3]);
     jake.visible = false;
-
     jakeLol = jokeTime.game.add.audio('jake-voice');
-    marcyLol = jokeTime.game.add.audio('marcy-voice');
     
-    lspVoice = jokeTime.game.add.audio('lsp-voice');
-    lspVoice.loop = true;
-    
-    boolameVoice = jokeTime.game.add.audio('boolame-voice');
-    bravoVoice = jokeTime.game.add.audio('bravo-voice');
-
+    // Loom space princess
     lsp = jokeTime.game.add.sprite(266, 241, 'lsp');
     lsp.animations.add('walk', [0,1,2,1]);
     lsp.animations.add('idle', [3]);
     lsp.visible = false;
+    lspVoice = jokeTime.game.add.audio('lsp-voice');
+    lspVoice.loop = true;
 
+    // Bubblegum princess
+    bp = jokeTime.game.add.sprite(266, 211, 'bp');
+    bp.animations.add('walk', [1]);
+    bp.animations.add('idle', [0]);
+    bp.visible = false;
+
+    // ice King
+    iceKing = jokeTime.game.add.sprite(266, 228, 'iceKing');
+    iceKing.animations.add('walk', [1]);
+    iceKing.animations.add('idle', [0]);
+    iceKing.visible = false;
+
+    
+    boolameVoice = jokeTime.game.add.audio('boolame-voice');
+    bravoVoice = jokeTime.game.add.audio('bravo-voice');
 
     mic = jokeTime.game.add.sprite(200, 255, 'mic');
     tomatos = jokeTime.game.add.group();
@@ -199,11 +212,11 @@ function updateJoke(){
       lspVoice.stop();
     }
     state = STATE.PAUSE;
-    count = 80;
+    count = 50;
   }
   if(jokeText[indexText]=='.'){
     state = STATE.PAUSE;
-    count = 10;
+    count = 15;
   }
   if(jokeText[indexText]=='-'){
     state = STATE.PAUSE;
@@ -269,6 +282,10 @@ function getSprite(character){
     currentSprite = jake;
   }else if(character=='lsp'){
     currentSprite = lsp;
+  }else if(character=='bp'){
+    currentSprite = bp;
+  }else if(character=='iceKing'){
+    currentSprite = iceKing;
   }
 }
 
@@ -279,7 +296,13 @@ function enterCharacter(character, callback){
   currentSprite.visible = true;
   currentSprite.x=-40;
   currentSprite.animations.play('walk', 4, true);
-  move = jokeTime.game.add.tween(currentSprite).to({ x: 160 }, 1600, Phaser.Easing.Linear.None, true);
+  var _x = 160;
+  if(character=='iceKing'){
+    _x = 140;
+  }else if(character=='lsp'){
+    _x = 150;
+  }
+  move = jokeTime.game.add.tween(currentSprite).to({ x: _x }, 1600, Phaser.Easing.Linear.None, true);
   move.onComplete.add(function(){
     currentSprite.animations.play('idle', 4, false);
     state = STATE.JOKING;
@@ -308,5 +331,6 @@ function exitCharacter(character, callback){
 function changeCharacters(character, callback){
   exitCharacter(joker, function(){
     enterCharacter(character, callback);
+    //enterCharacter('jake', callback);
   })
 }
