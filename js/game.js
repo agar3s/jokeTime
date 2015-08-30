@@ -107,7 +107,7 @@ jokeTime.Game.prototype = {
     clapButton = jokeTime.game.add.button(30, 530, 'cinnamon', clap, this, 0);
     clapButton.animations.add('glow', [0,1]);
     
-    close = jokeTime.game.add.button(10, 10, 'close', jokeTime.gofull, this, 0);
+    fullscreen = jokeTime.game.add.button(10, 10, 'fullscreen', jokeTime.gofull, this, 0);
     //banana = jokeTime.game.add.button(120, 550, 'banana', jokeTime.callBanana, this, 0);
     //banana.scale.setTo(0.35)
     

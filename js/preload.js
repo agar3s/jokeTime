@@ -33,6 +33,7 @@ jokeTime.Preload.prototype = {
     this.load.spritesheet('lsp', 'assets/LSP-Sprint.png', 66, 92);
     this.load.spritesheet('boo', 'assets/boo-button.png', 120, 108);
     this.load.spritesheet('cinnamon', 'assets/Applause-button.png', 120, 108);
+    this.load.spritesheet('play', 'assets/jugar-boton.png', 334, 114);
 
     this.load.audio('ost', 'assets/Soundtrack.mp3');
 
@@ -43,8 +44,9 @@ jokeTime.Preload.prototype = {
     this.load.audio('bravo-voice', 'assets/Bravo.mp3');
 
     this.load.image('tomato', 'assets/tomato.png');
+    this.load.image('fullscreen', 'assets/fullscreen.png');
     //this.load.image('banana', 'assets/banana.jpg');
-    this.load.image('splash', 'assets/splash.png');
+    this.load.image('splash', 'assets/portada.png');
     this.load.image('mic', 'assets/MICROFONO.png');
 
     this.load.image('fila1', 'assets/Fila-1.png');

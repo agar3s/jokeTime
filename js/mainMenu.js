@@ -8,17 +8,20 @@ jokeTime.MainMenu.prototype = {
     ost = jokeTime.game.add.audio('ost');
     ost.loop= true;
     ost.play();
+    
     jokeTime.game.add.sprite(0, 0, 'splash');
+    play = jokeTime.game.add.sprite(23, 503, 'play');
+    play.animations.add('glow', [0,1]);
+    play.animations.play('glow', 4, true);
+
     jokeTime.game.input.onDown.add(this.start, this);
 
-    bmpText = jokeTime.game.add.bitmapText(0, 100, 'vcr', 'Touch/click to Start', 32);
-    bmpText.angle=180;
+
   },
   update: function(){
-    bmpText.tint=bmpText.tint^0XFFFFF;
   },
   start: function(){
-    //jokeTime.gofull();
+    jokeTime.gofull();
     this.state.start('Game');
   }
 };
