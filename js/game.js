@@ -72,6 +72,9 @@ jokeTime.Game.prototype = {
     marci = jokeTime.game.add.sprite(66, 220, 'marci');
     marci.animations.add('walk', [0,1,2,1]);
     marci.animations.add('idle', [3]);
+    // ***
+    marci.animations.add('walkt', [0,1,2,1]);
+    marci.animations.add('idlet', [3]);
     marci.visible = false;
     marcyLol = jokeTime.game.add.audio('marcy-voice');
 
@@ -79,12 +82,17 @@ jokeTime.Game.prototype = {
     finn = jokeTime.game.add.sprite(166, 252, 'finn');
     finn.animations.add('walk', [0,1,2,1]);
     finn.animations.add('idle', [3]);
+    finn.animations.add('walkt', [4,5,6,5]);
+    finn.animations.add('idlet', [7]);
     finn.visible = false;
 
     // Jake the dog
     jake = jokeTime.game.add.sprite(266, 269, 'jake');
     jake.animations.add('walk', [0,1,2,1]);
     jake.animations.add('idle', [3]);
+    // ***
+    jake.animations.add('walkt', [0,1,2,1]);
+    jake.animations.add('idlet', [3]);
     jake.visible = false;
     jakeLol = jokeTime.game.add.audio('jake-voice');
     
@@ -92,6 +100,9 @@ jokeTime.Game.prototype = {
     lsp = jokeTime.game.add.sprite(266, 241, 'lsp');
     lsp.animations.add('walk', [0,1,2,1]);
     lsp.animations.add('idle', [3]);
+    // ***
+    lsp.animations.add('walkt', [0,1,2,1]);
+    lsp.animations.add('idlet', [3]);
     lsp.visible = false;
     lspVoice = jokeTime.game.add.audio('lsp-voice');
     lspVoice.loop = true;
@@ -100,12 +111,18 @@ jokeTime.Game.prototype = {
     bp = jokeTime.game.add.sprite(266, 211, 'bp');
     bp.animations.add('walk', [1]);
     bp.animations.add('idle', [0]);
+    /***/
+    bp.animations.add('walkt', [3]);
+    bp.animations.add('idlet', [2]);
     bp.visible = false;
 
     // ice King
     iceKing = jokeTime.game.add.sprite(266, 228, 'iceKing');
     iceKing.animations.add('walk', [1]);
     iceKing.animations.add('idle', [0]);
+    /***/
+    iceKing.animations.add('walkt', [3]);
+    iceKing.animations.add('idlet', [2]);
     iceKing.visible = false;
 
     
@@ -167,6 +184,7 @@ function boo(){
   for (var i = 0; i < 20; i++) {
     launchTomato();
   };
+  currentSprite.animations.play('idlet', 4, false);
   setTimeout(function(){
     state = STATE.BOOING;
     nextJoke();
@@ -318,9 +336,10 @@ function exitCharacter(character, callback){
   state = STATE.WALKING;
   ajoke.text = '';
   getSprite(character);
-  currentSprite.animations.play('walk', 4, true);
+  currentSprite.animations.play(claped?'walk':'walkt', 4, true);
   move = jokeTime.game.add.tween(currentSprite).to({ x: 400 }, 1600, Phaser.Easing.Linear.None, true);
   move.onComplete.add(function(){
+    claped = true;
     currentSprite.animations.play('idle', 4, false);
     currentSprite.visible = false;
     callback();
@@ -331,6 +350,6 @@ function exitCharacter(character, callback){
 function changeCharacters(character, callback){
   exitCharacter(joker, function(){
     enterCharacter(character, callback);
-    //enterCharacter('jake', callback);
+    //enterCharacter('finn', callback);
   })
 }

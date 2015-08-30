@@ -59,7 +59,7 @@ jokeTime.Preload.prototype = {
     this.load.bitmapFont('vcr', 'fonts/vcr_0.png', 'fonts/vcr.xml');
   },
   create: function() {
-    //this.state.start('MainMenu');
-    this.state.start('Game');
+    this.state.start('MainMenu');
+    //this.state.start('Game');
   }
 };
