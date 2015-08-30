@@ -34,16 +34,19 @@ var jokes = {
   '26': {joker:'marci', joke:'¿Cuál es el lápiz que mata?\n- Lapistola.'},
   
   '13':{joker:'bp', joke:'¿Cómo se suicidó un atomo?\nSe tiró de un puente de\nhidrógeno!'},
-  '14':{joker:'bp', joke:'¿qué es un oso polar?\nEs un oso rectangular, después\nde un cambio de coordenadas.'},
+  '14':{joker:'bp', joke:'¿Qué es un oso polar?\nEs un oso rectangular, después\nde un cambio de coordenadas.'},
   '15':{joker:'bp', joke:'Hay 10 clases de personas...\nlas que saben binario,\ny las que no.'},
   '16':{joker:'bp', joke:'¿Cuál es la derivada de la\ntostada?\n- El pan integral.'},
+  '38':{joker:'bp', joke:'El venado quería mis caramelos...\npero yo no le di nada.\nSi ustedes me entienden.\n;-) ;-)'},
+  '39':{joker:'bp', joke:'¿Qué le dijo un vector a otro?\n- Oye, ¿tienes un momento? '},
+  '40':{joker:'bp', joke:'¿Qué le dice la curva a la\ntangente?\n- ¡No me toques!'},
   
 
   '32': {joker:'iceKing', joke:'¿Cuál es el colmo de una nave?\nQue un astronauta...\nay no así no es...\nEsperen vuelvo a empezar...'},
   '33': {joker:'iceKing', joke:'¿En qué se parece un boxeador a\nun telescopio?\nEn que cuando van a...\n¡GUNTER! ¿Cómo era el chiste?'},
   '34': {joker:'iceKing', joke:'¿Qué le dijo un árbol a otro\nárbol?\n- Respira... No. Eso no era...\n¡GUNTER confundiste los chistes!'},
   '35': {joker:'iceKing', joke:'¿Por qué finn quería ir de\naventura al espacio?\n- ¡porque quería ir al\ninFINNito y más alla!'},
-  '36': {joker:'iceKing', joke:'Gunter, \n¿Te volviste reggaetonero?'},
+  '36': {joker:'iceKing', joke:'¿Cuál es el animal mas viejo?\nun momentico...\nGunter, \n¿Te volviste reggaetonero?'},
 
 };
 
