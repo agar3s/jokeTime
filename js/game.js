@@ -12,24 +12,31 @@ var fila3;
 var fila4;
 
 var STATE = {
-  JOKING: 0,
-  END: 1,
-  PAUSE: 2,
-  CELEBRATING: 3,
-  BOOING: 4
+  INTRO: 0,
+  WALKING: 1,
+  JOKING: 2,
+  END: 3,
+  PAUSE: 4,
+  CELEBRATING: 5,
+  BOOING: 6
 }
 
 var state = 0;
 var count = 0;
 
+var joker;
+var currentSprite;
+
 jokeTime.Game.prototype = {
   create: function() {
     jokeTime.game.add.sprite(0, 0, 'background');
 
-    var graphics = jokeTime.game.add.graphics(0, 0);
+    graphics = jokeTime.game.add.graphics(0, 0);
+    graphics.fillAlpha=0.7;
     graphics.beginFill(0xFFFFFF);
     graphics.drawRoundedRect(20, 70, 340, 85, 6);
     //tarima
+    graphics.fillAlpha=1;
     graphics.beginFill(0x2d1f09);
     graphics.drawRect(0, 308, 380, 40);
     graphics.beginFill(0x171717);
@@ -58,11 +65,32 @@ jokeTime.Game.prototype = {
     tween2.pause();
     tween3.pause();
     tween4.pause();
-    //
 
-    //player = jokeTime.game.add.sprite(166, 220, 'marci');
-    finn = jokeTime.game.add.sprite(166, 220, 'finn');
-    mic = jokeTime.game.add.sprite(200, 250, 'mic');
+
+    //
+    marci = jokeTime.game.add.sprite(66, 220, 'marci');
+    marci.animations.add('walk', [0,1,2,1]);
+    marci.animations.add('idle', [3]);
+    marci.visible = false;
+
+    finn = jokeTime.game.add.sprite(166, 252, 'finn');
+    finn.animations.add('walk', [0,1,2,1]);
+    finn.animations.add('idle', [3]);
+    finn.visible = false;
+
+    jake = jokeTime.game.add.sprite(266, 269, 'jake');
+    jake.animations.add('walk', [0,1,2,1]);
+    jake.animations.add('idle', [3]);
+    jake.visible = false;
+
+    lsp = jokeTime.game.add.sprite(266, 241, 'lsp');
+    lsp.animations.add('walk', [0,1,2,1]);
+    lsp.animations.add('idle', [3]);
+    lsp.visible = false;
+
+
+
+    mic = jokeTime.game.add.sprite(200, 255, 'mic');
     tomatos = jokeTime.game.add.group();
 
     scoreText = jokeTime.game.add.text(16, 16, 'score: 0', { font:'Conv_VCR_OSD_MONO_1.001', fontSize: '64px', fill: '#fff' });
@@ -78,7 +106,7 @@ jokeTime.Game.prototype = {
     ajoke.tint = 0;
     ajoke.angle = 180;
     ajoke.text = '';
-    jokeText = jokeTime.getJoke().joke;
+    nextJoke();
   },
 
   update: function() {
@@ -93,7 +121,6 @@ jokeTime.Game.prototype = {
 function boo(){
   if(state!=STATE.END) return;
   state = STATE.BOOING;
-  alert('boooo');
   nextJoke();
 };
 
@@ -144,12 +171,17 @@ function suspense(){
 };
 
 function nextJoke(){
+  var joke = jokeTime.getJoke();
+  jokeText = joke.joke;
+  var character = joke.joker;
   disableButtons();
   indexText = -1;
-  jokeText = jokeTime.getJoke().joke;
   ajoke.text = '';
-  state = STATE.JOKING;
-  console.log('testing');
+  if(character==joker){
+    state = STATE.JOKING;
+  }else{
+    changeCharacters(character);
+  }
 }
 
 function enableButtons(){
@@ -160,4 +192,54 @@ function enableButtons(){
 function disableButtons(){
   tomato.tint = 0xcccccc;
   clap.tint = 0xcccccc;
+}
+
+function getSprite(character){
+  if(character=='marci'){
+    currentSprite = marci;
+  }else if(character=='finn'){
+    currentSprite = finn;
+  }else if(character=='jake'){
+    currentSprite = jake;
+  }else if(character=='lsp'){
+    currentSprite = lsp;
+  }
+}
+
+function enterCharacter(character){
+
+  joker = character;
+  getSprite(character);
+  currentSprite.visible = true;
+  currentSprite.x=-40;
+  currentSprite.animations.play('walk', 4, true);
+  move = jokeTime.game.add.tween(currentSprite).to({ x: 160 }, 1600, Phaser.Easing.Linear.None, true);
+  move.onComplete.add(function(){
+    currentSprite.animations.play('idle', 4, false);
+    state = STATE.JOKING;
+  }, jokeTime.game);
+
+}
+
+function exitCharacter(character, callback){
+  if(!joker){
+    return callback();
+  }
+  state = STATE.WALKING;
+  ajoke.text = '';
+  getSprite(character);
+  currentSprite.animations.play('walk', 4, true);
+  move = jokeTime.game.add.tween(currentSprite).to({ x: 400 }, 1600, Phaser.Easing.Linear.None, true);
+  move.onComplete.add(function(){
+    currentSprite.animations.play('idle', 4, false);
+    currentSprite.visible = true;
+    callback();
+  }, jokeTime.game);
+
+}
+
+function changeCharacters(character){
+  exitCharacter(joker, function(){
+    enterCharacter(character);
+  })
 }

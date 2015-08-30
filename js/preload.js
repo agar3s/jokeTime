@@ -19,15 +19,19 @@ jokeTime.Preload.prototype = {
 
   this.loadingText.anchor.set(0.5, 0.5);
   this.loadingText.x = ((this.game.world.width / 2) - (this.loadingText.width / 2)) + 10;
-    
+
 
 
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     this.load.image('background', 'assets/Fondo.jpg');
-    this.load.spritesheet('marci', 'assets/Marcy_front.png', 50, 114);
-    this.load.spritesheet('finn', 'assets/finn-sprite.png', 30, 41);
+    
+    this.load.spritesheet('marci', 'assets/Marcy-Sprite.png', 55, 113);
+    this.load.spritesheet('finn', 'assets/finn-sprite.png', 58, 81);
+    this.load.spritesheet('jake', 'assets/Jake-Sprite.png', 50, 64);
+    this.load.spritesheet('lsp', 'assets/LSP-Sprint.png', 66, 92);
+
     this.load.image('tomato', 'assets/boo-button.png');
     this.load.image('cinnamon', 'assets/Applause-button.png');
     this.load.image('banana', 'assets/banana.jpg');
