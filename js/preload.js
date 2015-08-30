@@ -32,6 +32,7 @@ jokeTime.Preload.prototype = {
     this.load.image('cinnamon', 'assets/Applause-button.png');
     this.load.image('banana', 'assets/banana.jpg');
     this.load.image('splash', 'assets/splash.png');
+    this.load.image('mic', 'assets/MICROFONO.png');
 
     this.load.image('fila1', 'assets/Fila-1.png');
     this.load.image('fila2', 'assets/Fila-2.png');
@@ -41,7 +42,7 @@ jokeTime.Preload.prototype = {
     this.load.bitmapFont('vcr', 'fonts/vcr_0.png', 'fonts/vcr.xml');
   },
   create: function() {
-    this.state.start('MainMenu');
-    //this.state.start('Game');
+    //this.state.start('MainMenu');
+    this.state.start('Game');
   }
 };

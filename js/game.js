@@ -2,12 +2,25 @@ var jokeTime = jokeTime || {};
 
 jokeTime.Game = function() {};
 
-var jokeText = '¿Qué le dijo una uva verde a\nuna morada?\n-Respira!';
+var jokeText = '';
+
+var indexText = -1;
 
 var fila1;
 var fila2;
 var fila3;
 var fila4;
+
+var STATE = {
+  JOKING: 0,
+  END: 1,
+  PAUSE: 2,
+  CELEBRATING: 3,
+  BOOING: 4
+}
+
+var state = 0;
+var count = 0;
 
 jokeTime.Game.prototype = {
   create: function() {
@@ -27,13 +40,9 @@ jokeTime.Game.prototype = {
     graphics.drawRect(0, 580, 380, 60);
 
     fila1 = jokeTime.game.add.sprite(0, 380, 'fila1');
-    fila1.scale.set(0.8);
     fila2 = jokeTime.game.add.sprite(0, 380, 'fila2');
-    fila2.scale.set(0.8);
     fila3 = jokeTime.game.add.sprite(0, 420, 'fila3');
-    fila3.scale.set(0.8);
     fila4 = jokeTime.game.add.sprite(0, 460, 'fila4');
-    fila4.scale.set(0.8);
 
 
     // Aplause!
@@ -53,6 +62,7 @@ jokeTime.Game.prototype = {
 
     //player = jokeTime.game.add.sprite(166, 220, 'marci');
     finn = jokeTime.game.add.sprite(166, 220, 'finn');
+    mic = jokeTime.game.add.sprite(200, 250, 'mic');
     tomatos = jokeTime.game.add.group();
 
     scoreText = jokeTime.game.add.text(16, 16, 'score: 0', { font:'Conv_VCR_OSD_MONO_1.001', fontSize: '64px', fill: '#fff' });
@@ -63,22 +73,33 @@ jokeTime.Game.prototype = {
     banana = jokeTime.game.add.button(300, 10, 'banana', jokeTime.callBanana, this, 0);
     banana.scale.setTo(0.35)
     
-    ajoke = jokeTime.game.add.bitmapText(50, 90, 'vcr', '', 16);
+    ajoke = jokeTime.game.add.bitmapText(50, 80, 'vcr', '', 16);
     ajoke.maxWidth = 280;
     ajoke.tint = 0;
     ajoke.angle = 180;
-    ajoke.text = jokeText;
+    ajoke.text = '';
+    jokeText = jokeTime.getJoke().joke;
   },
 
   update: function() {
+    if(state==STATE.JOKING){
+      updateJoke();
+    }else if(state == STATE.PAUSE){
+      suspense();
+    }
   }
 }
 
 function boo(){
+  if(state!=STATE.END) return;
+  state = STATE.BOOING;
   alert('boooo');
+  nextJoke();
 };
 
 function clap(){
+  if(state!=STATE.END) return;
+  state = STATE.CELEBRATING;
   tween1.resume();
   tween2.resume();
   tween3.resume();
@@ -88,5 +109,55 @@ function clap(){
     tween2.pause();
     tween3.pause();
     tween4.pause();
+    nextJoke();
   }, 800);
+};
+
+function updateJoke(){
+  indexText++;
+  if(indexText<jokeText.length){
+    ajoke.text+= jokeText[indexText];
+  }else{
+    state = STATE.END;
+    enableButtons();
+  }
+  if(jokeText[indexText]=='?'){
+    state = STATE.PAUSE;
+    count = 100;
+  }
+  if(jokeText[indexText]=='.'){
+    state = STATE.PAUSE;
+    count = 20;
+  }
+  if(jokeText[indexText]=='-'){
+    state = STATE.PAUSE;
+    count = 30;
+  }
+}
+
+
+function suspense(){
+  count--;
+  if(count==0){
+    state = STATE.JOKING;
+  }
+};
+
+function nextJoke(){
+  disableButtons();
+  indexText = -1;
+  jokeText = jokeTime.getJoke().joke;
+  ajoke.text = '';
+  state = STATE.JOKING;
+  console.log('testing');
+}
+
+function enableButtons(){
+  tomato.tint = 0xffffff;
+  clap.tint = 0xffffff;
+}
+
+function disableButtons(){
+  tomato.tint = 0xcccccc;
+  clap.tint = 0xcccccc;
 }
