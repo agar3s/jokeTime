@@ -139,7 +139,7 @@ jokeTime.Game.prototype = {
     clapButton.animations.add('glow', [0,1]);
     
     fullscreen = jokeTime.game.add.button(10, 10, 'fullscreen', jokeTime.gofull, this, 0);
-    //banana = jokeTime.game.add.button(120, 550, 'banana', jokeTime.callBanana, this, 0);
+    tweetThis = jokeTime.game.add.button(340, 10, 'twitter', tweetjoke, this, 0);
     //banana.scale.setTo(0.35)
     
     ajoke = jokeTime.game.add.bitmapText(50, 80, 'vcr', '', 16);
@@ -354,4 +354,20 @@ function changeCharacters(character, callback){
     enterCharacter(character, callback);
     //enterCharacter('finn', callback);
   })
+}
+
+function tweetjoke(){
+  var width  = 575,
+      height = 400,
+      left   = (window.innerWidth- width)  / 2,
+      top    = (window.innerHeight - height) / 2,
+      opts   = 'status=1' +
+               ',width='  + width  +
+               ',height=' + height +
+               ',top='    + top    +
+               ',left='   + left;
+  var tweetbegin = 'http://twitter.com/home?status=';
+  var tweettxt = '"'+jokeText+'"\n Juega #jokeTime: ' + window.location.href;
+  var finaltweet = tweetbegin +encodeURIComponent(tweettxt);
+  window.open(finaltweet, '_blank ', opts);
 }

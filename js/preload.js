@@ -48,6 +48,7 @@ jokeTime.Preload.prototype = {
 
     this.load.image('tomato', 'assets/tomato.png');
     this.load.image('fullscreen', 'assets/fullscreen.png');
+    this.load.image('twitter', 'assets/twitter.png');
     //this.load.image('banana', 'assets/banana.jpg');
     this.load.image('splash', 'assets/portada.png');
     this.load.image('mic', 'assets/MICROFONO.png');
