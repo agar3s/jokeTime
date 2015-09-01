@@ -367,7 +367,7 @@ function tweetjoke(){
                ',top='    + top    +
                ',left='   + left;
   var tweetbegin = 'http://twitter.com/home?status=';
-  var tweettxt = '"'+jokeText+'"\n Juega #jokeTime: ' + window.location.href;
+  var tweettxt = '"'+jokeText+'"\n #HoradeAventura #jokeTime: ' + window.location.href;
   var finaltweet = tweetbegin +encodeURIComponent(tweettxt);
   window.open(finaltweet, '_blank ', opts);
 }
